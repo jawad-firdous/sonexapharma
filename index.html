@@ -3,108 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sonexa Pharma - Coming Soon</title>
+  <title>Sonexa Pharma</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
     body {
       font-family: 'Roboto', sans-serif;
-      height: 100vh;
+      line-height: 1.6;
+      color: #003049;
+      background-color: #f6f9fc;
+    }
+    header {
       background: linear-gradient(135deg, #004d7a, #00b4d8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: white;
+      padding: 60px 20px;
       text-align: center;
-      color: #ffffff;
+    }
+    header h1 {
+      font-size: 3em;
+    }
+    header p {
+      font-size: 1.3em;
+      margin-top: 10px;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    section:nth-child(even) {
+      background-color: #e8f4fa;
+    }
+    section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #0077b6;
+      text-align: center;
+    }
+    .grid-3, .grid-2 {
+      display: grid;
+      gap: 20px;
+    }
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+    .card, .value-box {
+      background: #ffffff;
       padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
-    .container {
-      max-width: 700px;
-      animation: fadeIn 1.5s ease-in-out;
-      background-color: rgba(255, 255, 255, 0.07);
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    .card ul {
+      padding-left: 20px;
     }
-    .logo {
-      width: 240px;
-      margin: 0 auto 1.5em;
-      display: block;
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5em;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 1em;
-    }
-    #countdown {
-      font-size: 1.5rem;
+    .clients-list li::before,
+    .institutes-list li::before {
+      content: "\2022";
+      color: #00b4d8;
       font-weight: bold;
-      margin-bottom: 1.5em;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
     }
-    .contact-button {
-      background-color: #ffffff;
-      color: #004d7a;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      text-decoration: none;
-      font-weight: bold;
+    .section-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
     }
-    .contact-button:hover {
-      background-color: #00b4d8;
-      color: #ffffff;
+    .section-icon {
+      font-size: 3em;
+      color: #00b4d8;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    .value-box {
+      flex: 1 1 calc(25% - 20px);
+      min-width: 220px;
+      text-align: center;
+      background: #e0f7fa;
+    }
+    footer {
+      background: #003049;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #00b4d8;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="Sonexa Pharma Logo" class="logo">
+  <header>
     <h1>Sonexa Pharma</h1>
-    <p>We’re working on something revolutionary in healthcare.</p>
-    <div id="countdown">Launching on May 15</div>
-    <a href="mailto:info@sonexapharma.com" class="contact-button">Contact Us</a>
-  </div>
+    <p>Bringing Medicine to the Community</p>
+  </header>
 
-  <script>
-    // Set launch date to May 15, 2025
-    const launchDate = new Date('May 15, 2025 00:00:00');
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="card">
+      <p>Sonexa Pharma is a pharmaceutical distributor committed to delivering quality services in the healthcare sector. Operating since 2018, our unique distribution and marketing network supports LP and institutional business across a range of specializations, including liver and kidney transplants, cardiology, vaccination, diabetes, nutrition, antibiotics, and nutraceuticals.</p>
+    </div>
+  </section>
 
-    const countdownEl = document.getElementById("countdown");
+  <section id="mission-vision">
+    <h2>Mission, Vision & Motto</h2>
+    <div class="grid-3">
+      <div class="card"><strong>Mission</strong><br>To consistently be ranked among the "Top Quality" pharmaceutical distributors in the region.</div>
+      <div class="card"><strong>Motto</strong><br>Your Health – Our Commitment</div>
+      <div class="card"><strong>Vision</strong><br>Dedicated to enhancing the quality of life by providing the best healthcare solutions.</div>
+    </div>
+  </section>
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = launchDate - now;
+  <section id="difference">
+    <h2>Why We Are Different</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>General</h3>
+        <ul>
+          <li>Independent LP and institutional business development.</li>
+          <li>Focus on value-added services and marketing-driven growth.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>LP Business</h3>
+        <ul>
+          <li>Daily liaison with pharmacists across government hospitals.</li>
+          <li>Stock tracking, enrolment in LP formularies, timely supply.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Healthcare Professionals</h3>
+        <ul>
+          <li>Expertise in transplant, immunization, rheumatology, surgery.</li>
+          <li>Meetings, advisory boards, seminars, and conferences.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      if (diff <= 0) {
-        countdownEl.innerText = "We are live!";
-        return;
-      }
+  <section id="clients">
+    <h2>Our Clients</h2>
+    <div class="card">
+      <ul class="clients-list">
+        <li>Rangers Hospital</li>
+        <li>Evercare Hospital</li>
+        <li>University of Lahore</li>
+        <li>Farooq Hospital</li>
+        <li>Doctors Hospital</li>
+        <li>Combined Military Hospitals</li>
+        <li>National Hospital</li>
+        <li>Indus Hospital</li>
+        <li>Punjab University</li>
+        <li>Life Hospital</li>
+        <li>Government sector hospitals of Punjab</li>
+        <li>NGOs based on health</li>
+      </ul>
+    </div>
+  </section>
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+  <section id="institutes">
+    <h2>Institutional Business</h2>
+    <div class="card">
+      <ul class="institutes-list">
+        <li>Pakistan Kidney and Liver Institute Lahore</li>
+        <li>Services Institute of Medical Sciences</li>
+        <li>Lahore General Hospital</li>
+        <li>Shifa International</li>
+        <li>Social Security Hospital Lahore</li>
+        <li>Children Hospital Lahore</li>
+        <li>Shaukat Khanum Cancer Memorial Hospital Lahore</li>
+      </ul>
+    </div>
+  </section>
 
-      countdownEl.innerText = `Launching in ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
+  <section id="values">
+    <h2>Our Values</h2>
+    <div class="values">
+      <div class="value-box"><strong>Integrity</strong><br>Ethical standards, transparency, and accountability.</div>
+      <div class="value-box"><strong>Excellence</strong><br>Commitment to the highest quality in all we do.</div>
+      <div class="value-box"><strong>Collaboration</strong><br>Cooperation internally and externally for better outcomes.</div>
+      <div class="value-box"><strong>Innovation</strong><br>Exploring ideas and technologies to enhance healthcare.</div>
+    </div>
+  </section>
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+  <footer>
+    <p>Contact us at <a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
+    <p>&copy; 2025 Sonexa Pharma. All rights reserved.</p>
+  </footer>
 </body>
 </html>
