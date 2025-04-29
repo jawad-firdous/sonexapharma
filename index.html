@@ -14,21 +14,27 @@
     body {
       font-family: 'Roboto', sans-serif;
       height: 100vh;
-      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      background: linear-gradient(135deg, #004d7a, #00b4d8);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #004d40;
+      color: #ffffff;
       padding: 20px;
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
       animation: fadeIn 1.5s ease-in-out;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
     .logo {
-      width: 150px;
+      width: 220px;
       margin: 0 auto 1.5em;
+      display: block;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
     }
     h1 {
       font-size: 3rem;
@@ -44,18 +50,20 @@
       margin-bottom: 1.5em;
     }
     .contact-button {
-      background-color: #00796b;
-      color: white;
+      background-color: #ffffff;
+      color: #004d7a;
       padding: 12px 24px;
       font-size: 1rem;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
       text-decoration: none;
+      font-weight: bold;
     }
     .contact-button:hover {
-      background-color: #004d40;
+      background-color: #00b4d8;
+      color: #ffffff;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
