@@ -4,47 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sonexa Pharma - Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
       height: 100vh;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
       display: flex;
-      justify-content: center;
       align-items: center;
-      background-color: #f5f9fc;
-      font-family: 'Arial', sans-serif;
+      justify-content: center;
       text-align: center;
-      color: #123456;
+      color: #004d40;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      animation: fadeIn 1.5s ease-in-out;
     }
     h1 {
-      font-size: 3em;
+      font-size: 3rem;
       margin-bottom: 0.5em;
     }
     p {
-      font-size: 1.2em;
+      font-size: 1.2rem;
+      margin-bottom: 1em;
+    }
+    #countdown {
+      font-size: 1.5rem;
+      font-weight: bold;
       margin-bottom: 1.5em;
     }
     .contact-button {
-      display: inline-block;
-      padding: 0.75em 1.5em;
-      background-color: #0077cc;
+      background-color: #00796b;
       color: white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
       text-decoration: none;
-      border-radius: 5px;
-      font-size: 1em;
-      transition: background-color 0.3s;
     }
     .contact-button:hover {
-      background-color: #005fa3;
+      background-color: #004d40;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div>
+  <div class="container">
     <h1>Sonexa Pharma</h1>
-    <p>We are working hard to bring something amazing for you. Stay tuned!</p>
+    <p>We’re working on something revolutionary in healthcare.</p>
+    <div id="countdown">Launching on May 15</div>
     <a href="mailto:info@sonexapharma.com" class="contact-button">Contact Us</a>
   </div>
+
+  <script>
+    // Set launch date to May 15, 2025
+    const launchDate = new Date('May 15, 2025 00:00:00');
+
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = launchDate - now;
+
+      if (diff <= 0) {
+        countdownEl.innerText = "We are live!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownEl.innerText = `Launching in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
