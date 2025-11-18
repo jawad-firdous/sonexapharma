@@ -5,63 +5,470 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sonexa Pharma | Our Values</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Roboto', sans-serif; margin: 0; background-color: #f6f9fc; color: #003049; }
-    header { background: linear-gradient(135deg, #004d7a, #00b4d8); color: white; padding: 20px; text-align: center; }
-    nav { background: #003049; display: flex; justify-content: center; gap: 30px; padding: 10px 0; }
-    nav a { color: white; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    section { padding: 40px 20px; max-width: 1200px; margin: auto; }
-    h2 { text-align: center; color: #0077b6; margin-bottom: 40px; }
-    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-    .value-card { background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
-    .value-card h3 { color: #00b4d8; margin-bottom: 10px; }
-    footer { background: #003049; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-    footer a { color: #00b4d8; text-decoration: underline; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-blue: #004d7a;
+      --secondary-blue: #00b4d8;
+      --dark-blue: #003049;
+      --light-blue: #e0f7fa;
+      --accent-blue: #0077b6;
+      --text-dark: #003049;
+      --text-light: #6c757d;
+      --white: #ffffff;
+      --gradient-primary: linear-gradient(135deg, #004d7a 0%, #00b4d8 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(0, 77, 122, 0.95) 0%, rgba(0, 180, 216, 0.95) 100%);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-sm);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-container img {
+      height: 80px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-blue);
+    }
+
+    .nav-links a.active {
+      color: var(--accent-blue);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--gradient-hero);
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      margin-top: 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-header p {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 300;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Section */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 2rem auto 0;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .value-card {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s ease;
+      border-top: 4px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .value-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .value-card:hover {
+      transform: translateY(-15px);
+      box-shadow: var(--shadow-lg);
+      border-top-color: var(--secondary-blue);
+    }
+
+    .value-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 2rem;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      transition: all 0.4s ease;
+      box-shadow: var(--shadow-md);
+    }
+
+    .value-card:hover .value-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .value-card h3 {
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-card p {
+      color: var(--text-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark-blue);
+      color: white;
+      padding: 3rem 2rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-content p {
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .footer-content a {
+      color: var(--secondary-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .footer-content a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 968px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 4rem 1.5rem;
+      }
+
+      .page-header {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Sonexa Pharma</h1>
-    <p>Our Core Values</p>
-  </header>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="values.html">Values</a>
-    <a href="operations.html">Operations</a>
-    <a href="contact.html">Contact</a>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Sonexa Pharma Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="values.html" class="active">Values</a></li>
+        <li><a href="operations.html">Operations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
   </nav>
 
-  <section id="values">
-    <h2>Our Core Values</h2>
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Our Core Values</h1>
+    <p>The principles that drive our commitment to excellence</p>
+  </div>
+
+  <!-- Values Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">What We Stand For</h2>
+      <p class="section-subtitle">These core values guide every decision we make and every relationship we build</p>
+    </div>
     <div class="values-grid">
       <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
         <h3>Integrity</h3>
-        <p>We uphold honesty, transparency, and ethical practices in every action and decision we make.</p>
+        <p>We uphold honesty, transparency, and ethical practices in every action and decision we make. Our commitment to integrity ensures trust and reliability in all our partnerships.</p>
       </div>
       <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-star"></i>
+        </div>
         <h3>Excellence</h3>
-        <p>We strive for the highest quality in our services, ensuring that we exceed customer expectations consistently.</p>
+        <p>We strive for the highest quality in our services, ensuring that we exceed customer expectations consistently. Excellence is not a goal, but a standard we maintain daily.</p>
       </div>
       <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-users"></i>
+        </div>
         <h3>Collaboration</h3>
-        <p>We believe in working together across teams, partners, and healthcare providers to create impactful solutions.</p>
+        <p>We believe in working together across teams, partners, and healthcare providers to create impactful solutions. Together, we achieve more than we ever could alone.</p>
       </div>
       <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
         <h3>Innovation</h3>
-        <p>We embrace new ideas, technologies, and continuous improvement to advance healthcare and patient outcomes.</p>
+        <p>We embrace new ideas, technologies, and continuous improvement to advance healthcare and patient outcomes. Innovation drives our mission to transform healthcare delivery.</p>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>Contact us at <a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
-    <p>&copy; 2025 Sonexa Pharma. All rights reserved.</p>
+    <div class="footer-content">
+      <p>Contact us at <a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
+      <p>&copy; 2025 Sonexa Pharma. All rights reserved.</p>
+    </div>
   </footer>
 
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all value cards
+    document.querySelectorAll('.value-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
