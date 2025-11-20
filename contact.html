@@ -10,464 +10,69 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --primary-blue: #004d7a;
       --secondary-blue: #00b4d8;
-      --dark-blue: #003049;
-      --light-blue: #e0f7fa;
-      --accent-blue: #0077b6;
-      --text-dark: #003049;
-      --text-light: #6c757d;
-      --white: #ffffff;
-      --gradient-primary: linear-gradient(135deg, #004d7a 0%, #00b4d8 100%);
-      --gradient-hero: linear-gradient(135deg, rgba(0, 77, 122, 0.95) 0%, rgba(0, 180, 216, 0.95) 100%);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+      --dark-blue: #031227;
+      --accent-blue: #22d1ee;
+      --text-dark: #0b1f3a;
+      --text-light: #5f7185;
+      --off-white: #f8fbff;
+      --gradient-hero: radial-gradient(circle at top, rgba(0, 180, 216, 0.35), rgba(0, 77, 122, 0.95));
+      --shadow-sm: 0 10px 35px rgba(3, 18, 39, 0.08);
+      --shadow-md: 0 15px 45px rgba(3, 18, 39, 0.12);
+      --shadow-lg: 0 30px 80px rgba(3, 18, 39, 0.2);
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text-dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text-dark); line-height: 1.65; overflow-x: hidden; }
+    .background { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 25% 15%, rgba(0, 180, 216, 0.08), transparent 45%), radial-gradient(circle at 80% 0%, rgba(0, 77, 122, 0.18), transparent 45%); }
+    .pattern { position: fixed; inset: 0; z-index: -1; opacity: 0.45; background-image: url('data:image/svg+xml,<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg"><g stroke="rgba(3,18,39,0.06)" stroke-width="1"><path d="M0 70 C200 120 120 230 320 260"/><path d="M0 210 C140 140 210 210 320 170"/></g></svg>'); animation: drift 32s linear infinite; }
+    @keyframes drift { from { transform: translateX(0); } to { transform: translateX(320px); } }
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-sm);
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
+    nav { position: fixed; top: 0; width: 100%; z-index: 999; padding: 1.2rem 0; transition: all 0.4s ease; }
+    nav.scrolled { background: rgba(3, 18, 39, 0.85); backdrop-filter: blur(18px); box-shadow: var(--shadow-sm); padding: 0.8rem 0; }
+    .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .logo-container img { height: 60px; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25)); }
+    .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: 500; letter-spacing: 0.4px; position: relative; padding-bottom: 0.2rem; }
+    .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0%; height: 2px; background: var(--accent-blue); transition: width 0.3s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-blue); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-    nav.scrolled {
-      box-shadow: var(--shadow-md);
-    }
+    header.hero { padding: 8rem 0 4rem; background: var(--gradient-hero); color: white; text-align: center; position: relative; overflow: hidden; }
+    header.hero h1 { font-size: clamp(2.8rem, 4vw, 4.2rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -1px; }
+    header.hero p { max-width: 900px; margin: 0 auto; color: rgba(255,255,255,0.85); font-size: 1.1rem; }
+    .contact-badges { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; }
+    .badge { border: 1px solid rgba(255,255,255,0.4); padding: 0.6rem 1.3rem; border-radius: 999px; letter-spacing: 0.2rem; font-size: 0.8rem; text-transform: uppercase; }
 
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .section { max-width: 1150px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .card { background: white; border-radius: 24px; padding: 2rem; box-shadow: var(--shadow-sm); border: 1px solid rgba(3,18,39,0.05); }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+    .contact-form { background: rgba(255,255,255,0.9); border-radius: 28px; padding: 2.5rem; box-shadow: var(--shadow-sm); border: 1px solid rgba(3,18,39,0.05); }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; margin-bottom: 0.3rem; font-weight: 600; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.9rem 1rem; border-radius: 12px; border: 1px solid rgba(3,18,39,0.1); font-family: inherit; }
+    .form-group textarea { min-height: 140px; resize: vertical; }
+    .form-group button { border: none; border-radius: 999px; padding: 0.95rem 2rem; background: var(--accent-blue); color: var(--dark-blue); font-weight: 600; cursor: pointer; }
 
-    .logo-container img {
-      height: 80px;
-      width: auto;
-    }
+    .map { margin-top: 3rem; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid rgba(3,18,39,0.07); }
+    .map iframe { width: 100%; height: 360px; border: none; }
 
-    .logo-text {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    footer { background: #020b17; color: rgba(255,255,255,0.7); padding: 2.5rem; text-align: center; font-size: 0.95rem; }
+    footer a { color: var(--accent-blue); text-decoration: none; }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      align-items: center;
-    }
+    .fade { opacity: 0; transform: translateY(25px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade.show { opacity: 1; transform: translateY(0); }
 
-    .nav-links a {
-      color: var(--text-dark);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gradient-primary);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-blue);
-    }
-
-    .nav-links a.active {
-      color: var(--accent-blue);
-    }
-
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text-dark);
-      cursor: pointer;
-    }
-
-    /* Page Header */
-    .page-header {
-      background: var(--gradient-hero);
-      color: white;
-      padding: 8rem 2rem 4rem;
-      text-align: center;
-      margin-top: 70px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-      opacity: 0.3;
-    }
-
-    .page-header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .page-header p {
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 300;
-      opacity: 0.95;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Section */
-    .section {
-      padding: 6rem 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--gradient-primary);
-      border-radius: 2px;
-    }
-
-    .section-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-light);
-      max-width: 700px;
-      margin: 2rem auto 0;
-    }
-
-    /* Contact Section */
-    .contact-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-top: 3rem;
-      align-items: start;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .contact-card {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: start;
-      gap: 1.5rem;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .contact-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 15px;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.8rem;
-      flex-shrink: 0;
-      box-shadow: var(--shadow-md);
-    }
-
-    .contact-details h3 {
-      color: var(--text-dark);
-      font-weight: 600;
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .contact-details p,
-    .contact-details a {
-      color: var(--text-light);
-      font-size: 1.05rem;
-      text-decoration: none;
-      line-height: 1.8;
-      display: block;
-      transition: color 0.3s ease;
-    }
-
-    .contact-details a:hover {
-      color: var(--accent-blue);
-    }
-
-    /* Contact Form */
-    .contact-form-container {
-      background: white;
-      padding: 3rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      color: var(--text-dark);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 1rem;
-      border: 2px solid #e9ecef;
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      background: #f8f9fa;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--secondary-blue);
-      background: white;
-      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 150px;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 1.2rem;
-      background: var(--gradient-primary);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .btn-submit:active {
-      transform: translateY(0);
-    }
-
-    /* Map Section */
-    .map-section {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      padding: 4rem 2rem;
-    }
-
-    .map-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      height: 400px;
-    }
-
-    .map-placeholder {
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .map-embed {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark-blue);
-      color: white;
-      padding: 3rem 2rem 2rem;
-      margin-top: 4rem;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .footer-content p {
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
-
-    .footer-content a {
-      color: var(--secondary-blue);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .footer-content a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.8s ease;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 968px) {
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu-toggle {
-        display: block;
-      }
-
-      .contact-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .section {
-        padding: 4rem 1.5rem;
-      }
-
-      .page-header {
-        padding: 6rem 1.5rem 3rem;
-      }
-
-      .contact-form-container {
-        padding: 2rem;
-      }
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    @media (max-width: 900px) { .nav-links { display: none; } }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <div class="background"></div>
+  <div class="pattern"></div>
+
   <nav id="navbar">
     <div class="nav-container">
       <div class="logo-container">
@@ -480,172 +85,86 @@
         <li><a href="operations.html">Operations</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
-      <button class="mobile-menu-toggle" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
-      </button>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <div class="page-header">
-    <h1>Get in Touch</h1>
-    <p>We're here to help and answer any questions you might have</p>
-  </div>
-
-  <!-- Contact Section -->
-  <section class="section" id="contact">
-    <div class="section-header">
-      <h2 class="section-title">Contact Us</h2>
-      <p class="section-subtitle">Reach out to us through any of the following channels</p>
+  <header class="hero">
+    <h1>Let’s align on better access.</h1>
+    <p>Reach our command center, pharmacist desks, or medical science liaisons any time. We respond within hours because patients can’t wait.</p>
+    <div class="contact-badges">
+      <span class="badge">24/7 dispatch</span>
+      <span class="badge">LP expertise</span>
+      <span class="badge">Hospital-first</span>
     </div>
-    <div class="contact-container">
-      <div class="contact-info">
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="contact-details">
-            <h3>Email</h3>
-            <a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <div class="contact-details">
-            <h3>Phone</h3>
-            <a href="tel:+923281507890">+92 328 1507890</a>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="contact-details">
-            <h3>Address</h3>
-            <p>786-C Faisal Town, Lahore<br>Pakistan</p>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-clock"></i>
-          </div>
-          <div class="contact-details">
-            <h3>Business Hours</h3>
-            <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 2:00 PM</p>
-          </div>
-        </div>
+  </header>
+
+  <section class="section">
+    <div class="grid">
+      <div class="card fade">
+        <h3>General inquiries</h3>
+        <p>Email: <a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
+        <p>Phone: +92 328 1507890</p>
       </div>
-      <div class="contact-form-container">
-        <h3 style="color: var(--text-dark); font-size: 1.5rem; margin-bottom: 2rem; font-weight: 600;">Send us a Message</h3>
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your name">
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email">
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-          </div>
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required placeholder="What is this regarding?">
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
-          </div>
-          <button type="submit" class="btn-submit">
-            <span>Send Message</span>
-            <i class="fas fa-paper-plane"></i>
-          </button>
+      <div class="card fade">
+        <h3>Head office</h3>
+        <p>786-C Faisal Town, Lahore, Pakistan</p>
+        <p>Open Monday to Saturday</p>
+      </div>
+      <div class="card fade">
+        <h3>Specialty desks</h3>
+        <p>Transplant, cardiology, immunology, and vaccine coordinators available on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: rgba(255,255,255,0.85); border-radius: 32px; box-shadow: var(--shadow-sm);">
+    <div class="grid" style="gap:2rem; align-items: stretch;">
+      <div class="card fade">
+        <h3>Connect with Sonexa</h3>
+        <p>Share your request and our hospital partnership desk will respond within 24 hours.</p>
+        <form class="contact-form">
+          <div class="form-group"><label for="name">Full name</label><input type="text" id="name" placeholder="Your name"></div>
+          <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="you@example.com"></div>
+          <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" placeholder="+92 300 0000000"></div>
+          <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Tell us how we can help"></textarea></div>
+          <div class="form-group"><button type="button" onclick="window.location.href='mailto:info@sonexapharma.com'">Send message</button></div>
         </form>
       </div>
+      <div class="card fade">
+        <h3>Priority contacts</h3>
+        <p><strong>Transplant desk:</strong> transplant@sonexapharma.com</p>
+        <p><strong>LP & import:</strong> lp@sonexapharma.com</p>
+        <p><strong>Government programs:</strong> publichealth@sonexapharma.com</p>
+        <p><strong>Media & partnerships:</strong> partnerships@sonexapharma.com</p>
+      </div>
     </div>
   </section>
 
-  <!-- Map Section -->
-  <section class="map-section">
-    <div class="map-container">
-      <iframe 
-        class="map-embed"
-        src="https://www.google.com/maps?q=786-C+Faisal+Town,+Lahore,+Pakistan&output=embed"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Sonexa Pharma Location - 786-C Faisal Town, Lahore">
-      </iframe>
+  <section class="section">
+    <div class="map fade">
+      <iframe src="https://www.google.com/maps?q=786-C+Faisal+Town,+Lahore,+Pakistan&output=embed" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <p>Contact us at <a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
-      <p>&copy; 2025 Sonexa Pharma. All rights reserved.</p>
-    </div>
+    <p>© 2025 Sonexa Pharma — Transforming Access, Empowering Care.</p>
+    <p><a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
   </footer>
 
   <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
     });
 
-    // Contact form handling
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Get form data
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-      };
-
-      // Create mailto link (you can replace this with actual form submission)
-      const mailtoLink = `mailto:info@sonexapharma.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`)}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
-      // Show success message (optional)
-      alert('Thank you for your message! Your email client should open now.');
-      
-      // Reset form
-      this.reset();
-    });
-
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('show');
       });
-    }, observerOptions);
+    }, { threshold: 0.2 });
 
-    // Observe all contact cards
-    document.querySelectorAll('.contact-card').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

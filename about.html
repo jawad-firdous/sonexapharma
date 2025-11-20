@@ -3,433 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Sonexa Pharma</title>
+  <title>About Sonexa Pharma</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --primary-blue: #004d7a;
       --secondary-blue: #00b4d8;
-      --dark-blue: #003049;
-      --light-blue: #e0f7fa;
-      --accent-blue: #0077b6;
-      --text-dark: #003049;
-      --text-light: #6c757d;
-      --white: #ffffff;
-      --gradient-primary: linear-gradient(135deg, #004d7a 0%, #00b4d8 100%);
-      --gradient-hero: linear-gradient(135deg, rgba(0, 77, 122, 0.95) 0%, rgba(0, 180, 216, 0.95) 100%);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+      --dark-blue: #031227;
+      --accent-blue: #22d1ee;
+      --text-dark: #0b1f3a;
+      --text-light: #5f7185;
+      --off-white: #f8fbff;
+      --gradient-hero: radial-gradient(circle at top, rgba(0, 180, 216, 0.35), rgba(0, 77, 122, 0.95));
+      --shadow-sm: 0 10px 35px rgba(3, 18, 39, 0.08);
+      --shadow-md: 0 15px 45px rgba(3, 18, 39, 0.12);
+      --shadow-lg: 0 30px 80px rgba(3, 18, 39, 0.2);
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text-dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text-dark); line-height: 1.65; overflow-x: hidden; }
+    .background-glow { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 15% 15%, rgba(0, 180, 216, 0.08), transparent 45%), radial-gradient(circle at 85% 0%, rgba(0, 77, 122, 0.18), transparent 50%), radial-gradient(circle at 50% 75%, rgba(34, 209, 238, 0.15), transparent 45%); }
+    .abstract-lines { position: fixed; inset: 0; z-index: -1; opacity: 0.45; background-image: url('data:image/svg+xml,<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><g stroke="rgba(3,18,39,0.06)" stroke-width="1"><path d="M0 40 C130 140 170 200 300 260"/><path d="M0 180 C150 80 150 220 300 150"/></g></svg>'); animation: drift 32s linear infinite; }
+    @keyframes drift { from { transform: translateX(0); } to { transform: translateX(320px); } }
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-sm);
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
+    nav { position: fixed; top: 0; width: 100%; z-index: 999; padding: 1.2rem 0; transition: all 0.4s ease; }
+    nav.scrolled { background: rgba(3, 18, 39, 0.85); backdrop-filter: blur(18px); box-shadow: var(--shadow-sm); padding: 0.8rem 0; }
+    .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .logo-container img { height: 60px; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25)); }
+    .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: 500; letter-spacing: 0.4px; position: relative; padding-bottom: 0.2rem; }
+    .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0%; height: 2px; background: var(--accent-blue); transition: width 0.3s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-blue); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-cta { display: none; }
 
-    nav.scrolled {
-      box-shadow: var(--shadow-md);
-    }
+    header.hero { min-height: 75vh; padding: 8rem 0 4rem; background: var(--gradient-hero); color: white; text-align: center; position: relative; overflow: hidden; }
+    header.hero h1 { font-size: clamp(2.8rem, 4vw, 4.2rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -1px; }
+    header.hero p { max-width: 900px; margin: 0 auto; color: rgba(255,255,255,0.85); font-size: 1.1rem; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; }
+    .hero-badge { border: 1px solid rgba(255,255,255,0.4); padding: 0.5rem 1.4rem; border-radius: 999px; font-size: 0.9rem; backdrop-filter: blur(4px); }
 
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .page-section { max-width: 1150px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-label { letter-spacing: 0.4rem; text-transform: uppercase; color: var(--accent-blue); font-weight: 600; font-size: 0.8rem; }
+    .section-title { font-size: clamp(2.1rem, 3vw, 3.2rem); margin: 0.8rem 0; }
+    .section-description { color: var(--text-light); max-width: 720px; margin: 0 auto; }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+    .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.6rem; }
+    .story-card { background: white; border-radius: 28px; padding: 2.3rem; box-shadow: var(--shadow-sm); border: 1px solid rgba(3,18,39,0.05); }
+    .story-card h3 { margin-bottom: 1rem; font-size: 1.3rem; }
+    .story-card p { color: var(--text-light); }
 
-    .logo-container img {
-      height: 80px;
-      width: auto;
-    }
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .pillar { background: rgba(255,255,255,0.9); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(3,18,39,0.06); box-shadow: var(--shadow-sm); }
+    .pillar span { font-size: 0.8rem; letter-spacing: 0.35rem; color: var(--accent-blue); text-transform: uppercase; }
 
-    .logo-text {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .timeline { margin-top: 3rem; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; top: 0; bottom: 0; background: rgba(0,77,122,0.15); }
+    .timeline-item { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; align-items: center; }
+    .timeline-card { background: white; border-radius: 24px; padding: 1.8rem; box-shadow: var(--shadow-sm); border: 1px solid rgba(3,18,39,0.05); }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      align-items: center;
-    }
+    .leaders { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; margin-top: 2.5rem; }
+    .leader-card { background: white; border-radius: 24px; padding: 1.8rem; border: 1px solid rgba(3,18,39,0.05); box-shadow: var(--shadow-sm); }
+    .leader-card h4 { margin-bottom: 0.4rem; }
+    .leader-card span { color: var(--text-light); font-size: 0.95rem; }
 
-    .nav-links a {
-      color: var(--text-dark);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
-      position: relative;
-    }
+    .cta-panel { max-width: 1000px; margin: 0 auto 5rem; background: linear-gradient(135deg, #031b3c, #004d7a); color: white; border-radius: 32px; padding: 2.8rem; box-shadow: var(--shadow-lg); text-align: center; }
+    .cta-panel p { color: rgba(255,255,255,0.8); max-width: 680px; margin: 0.8rem auto 1.6rem; }
+    .cta-panel a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2rem; border-radius: 999px; background: var(--accent-blue); color: var(--dark-blue); text-decoration: none; font-weight: 600; }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gradient-primary);
-      transition: width 0.3s ease;
-    }
+    footer { background: #020b17; color: rgba(255,255,255,0.7); padding: 2.5rem; text-align: center; font-size: 0.95rem; }
 
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
+    .fade { opacity: 0; transform: translateY(25px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade.show { opacity: 1; transform: translateY(0); }
 
-    .nav-links a:hover {
-      color: var(--accent-blue);
-    }
-
-    .nav-links a.active {
-      color: var(--accent-blue);
-    }
-
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text-dark);
-      cursor: pointer;
-    }
-
-    /* Page Header */
-    .page-header {
-      background: var(--gradient-hero);
-      color: white;
-      padding: 8rem 2rem 4rem;
-      text-align: center;
-      margin-top: 70px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-      opacity: 0.3;
-    }
-
-    .page-header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .page-header p {
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 300;
-      opacity: 0.95;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Section */
-    .section {
-      padding: 6rem 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--gradient-primary);
-      border-radius: 2px;
-    }
-
-    .section-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-light);
-      max-width: 700px;
-      margin: 2rem auto 0;
-    }
-
-    /* Cards */
-    .card {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-      margin-bottom: 2rem;
-    }
-
-    .card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-5px);
-    }
-
-    .card p {
-      font-size: 1.1rem;
-      line-height: 1.9;
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-    }
-
-    .card p:last-child {
-      margin-bottom: 0;
-    }
-
-    .card strong {
-      color: var(--text-dark);
-      font-weight: 600;
-    }
-
-    /* Grid */
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .mission-card {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-      transition: all 0.3s ease;
-      border-top: 4px solid transparent;
-    }
-
-    .mission-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
-      border-top-color: var(--secondary-blue);
-    }
-
-    .mission-card .icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      border-radius: 20px;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-    }
-
-    .mission-card strong {
-      display: block;
-      font-size: 1.5rem;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
-    .mission-card p {
-      color: var(--text-light);
-      line-height: 1.7;
-      font-size: 1rem;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .feature-card {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .feature-card h3 {
-      color: var(--accent-blue);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .feature-card h3 i {
-      color: var(--secondary-blue);
-      font-size: 1.3rem;
-    }
-
-    .feature-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .feature-card ul li {
-      padding: 0.75rem 0;
-      padding-left: 2rem;
-      position: relative;
-      color: var(--text-light);
-      line-height: 1.7;
-    }
-
-    .feature-card ul li::before {
-      content: '\f00c';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: var(--secondary-blue);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark-blue);
-      color: white;
-      padding: 3rem 2rem 2rem;
-      margin-top: 4rem;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .footer-content p {
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
-
-    .footer-content a {
-      color: var(--secondary-blue);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .footer-content a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.8s ease;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 968px) {
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu-toggle {
-        display: block;
-      }
-
-      .grid-3,
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .section {
-        padding: 4rem 1.5rem;
-      }
-
-      .page-header {
-        padding: 6rem 1.5rem 3rem;
-      }
-    }
-
-    html {
-      scroll-behavior: smooth;
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .timeline::before { display: none; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <div class="background-glow"></div>
+  <div class="abstract-lines"></div>
+
   <nav id="navbar">
     <div class="nav-container">
       <div class="logo-container">
@@ -442,128 +104,132 @@
         <li><a href="operations.html">Operations</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <button class="mobile-menu-toggle" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
-      </button>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <div class="page-header">
-    <h1>About Sonexa Pharma</h1>
-    <p>Your Health – Our Commitment</p>
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-chip">Established 2018</span>
+        <h1>The strategy team behind Pakistan’s most critical therapies.</h1>
+        <p>Sonexa Pharma was built to close the last-mile gaps that clinicians face when delivering transplant, immunology, and specialty care. Our culture combines disciplined operations with human empathy.</p>
+        <div class="hero-badges">
+          <span class="hero-badge">Hospital-first DNA</span>
+          <span class="hero-badge">National pharmacist desks</span>
+          <span class="hero-badge">ISO-aligned QA</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-section">
+    <div class="section-header">
+      <div class="section-label">Story</div>
+      <h2 class="section-title">Anchored in people, powered by systems.</h2>
+      <p class="section-description">We work shoulder-to-shoulder with transplant coordinators, ICU nurses, professors, and government taskforces to keep life-saving molecules moving.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-card fade">
+        <h3>Hospital-first partnership</h3>
+        <p>Daily touchpoints with pharmacists, clinicians, and supply heads ensure we forecast accurately, expedite LP approvals, and arrive with everything ready for theatre.</p>
+      </div>
+      <div class="story-card fade">
+        <h3>Transparent data</h3>
+        <p>Digital dashboards and temperature logs keep stakeholders informed from supplier release through patient administration.</p>
+      </div>
+      <div class="story-card fade">
+        <h3>People who care</h3>
+        <p>Our teams include former hospital buyers, QA specialists, and medical science liaisons who understand the urgency behind every request.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" style="background: rgba(255,255,255,0.7); border-radius: 36px; box-shadow: var(--shadow-sm);">
+    <div class="section-header">
+      <div class="section-label">Mission · Vision · Motto</div>
+      <h2 class="section-title">Guided by intent, delivered with integrity.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar fade">
+        <span>Mission</span>
+        <h3>Top-quality distribution</h3>
+        <p>Ranked among Pakistan’s most reliable specialty distributors through relentless execution.</p>
+      </div>
+      <div class="pillar fade">
+        <span>Vision</span>
+        <h3>Health outcomes elevated</h3>
+        <p>Every shipment, training, or advisory board aims to improve quality of life nationwide.</p>
+      </div>
+      <div class="pillar fade">
+        <span>Motto</span>
+        <h3>Your health – our commitment</h3>
+        <p>We are accountable to clinicians, patients, and the communities they serve.</p>
+      </div>
+      <div class="pillar fade">
+        <span>Values</span>
+        <h3>Integrity & empathy</h3>
+        <p>Trust is earned daily through transparent communication and service.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-header">
+      <div class="section-label">Evolution</div>
+      <h2 class="section-title">Milestones that shaped Sonexa.</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item fade">
+        <div class="timeline-card"><strong>2018 · Launch</strong><p>Founded with a focus on transplant logistics and compliance-heavy LP sourcing.</p></div>
+        <div class="timeline-card"><strong>2020 · Expansion</strong><p>Scaled into cardiology, vaccines, and national institutional programs.</p></div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-card"><strong>2022 · Digital leap</strong><p>Introduced real-time cold-chain monitoring, pharmacist dashboards, and QA pods.</p></div>
+        <div class="timeline-card"><strong>Today</strong><p>Partnering with 500+ hospitals, NGOs, and universities to transform access.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-header">
+      <div class="section-label">Leadership</div>
+      <h2 class="section-title">Specialists who stay close to the bedside.</h2>
+      <p class="section-description">Our leadership embeds with operating rooms, ministries, and campuses to anticipate needs before they become crises.</p>
+    </div>
+    <div class="leaders">
+      <div class="leader-card fade"><h4>Strategy Council</h4><span>Transplant, cardiology, and supply-chain veterans guiding national rollouts.</span></div>
+      <div class="leader-card fade"><h4>Medical Affairs</h4><span>Pharmacists and clinicians running advisory boards, CMEs, and patient education.</span></div>
+      <div class="leader-card fade"><h4>Operations Core</h4><span>QA, cold-chain, and import specialists with 24/7 command-center coverage.</span></div>
+    </div>
+  </section>
+
+  <div class="cta-panel fade">
+    <h2>Building the future of specialty access?</h2>
+    <p>Let’s design a partnership that keeps clinicians confident and patients supported.</p>
+    <a href="contact.html">Connect with Sonexa <i class="fas fa-arrow-right"></i></a>
   </div>
 
-  <!-- Who We Are Section -->
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">Who We Are</h2>
-    </div>
-    <div class="card">
-      <p>Sonexa Pharma is a leading pharmaceutical distributor established in 2018, driven by a commitment to enhancing lives through access to innovative and essential healthcare solutions. With a nationwide distribution network, we specialize in life-critical domains like liver and kidney transplants, cardiology, vaccinations, diabetes, and nutrition.</p>
-      <p>We work closely with both public and private institutions, offering tailored support in the LP business, institutional supply chains, and medical professional outreach.</p>
-    </div>
-  </section>
-
-  <!-- Mission, Vision & Motto Section -->
-  <section class="section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-    <div class="section-header">
-      <h2 class="section-title">Mission, Vision & Motto</h2>
-      <p class="section-subtitle">The principles that guide everything we do</p>
-    </div>
-    <div class="grid-3">
-      <div class="mission-card">
-        <div class="icon">
-          <i class="fas fa-bullseye"></i>
-        </div>
-        <strong>Mission</strong>
-        <p>To consistently be ranked among the "Top Quality" pharmaceutical distributors in the region.</p>
-      </div>
-      <div class="mission-card">
-        <div class="icon">
-          <i class="fas fa-heart"></i>
-        </div>
-        <strong>Motto</strong>
-        <p>Your Health – Our Commitment</p>
-      </div>
-      <div class="mission-card">
-        <div class="icon">
-          <i class="fas fa-eye"></i>
-        </div>
-        <strong>Vision</strong>
-        <p>Dedicated to enhancing the quality of life by providing the best healthcare solutions.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why We Are Different Section -->
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">Why We Are Different</h2>
-      <p class="section-subtitle">What sets us apart in the pharmaceutical distribution industry</p>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <h3><i class="fas fa-building"></i> General</h3>
-        <ul>
-          <li>Independent LP and institutional business development.</li>
-          <li>Value-added services and marketing-driven strategy.</li>
-        </ul>
-      </div>
-      <div class="feature-card">
-        <h3><i class="fas fa-hospital"></i> LP Business</h3>
-        <ul>
-          <li>Daily engagement with hospital pharmacists.</li>
-          <li>Formulary registrations and fast-track supply support.</li>
-        </ul>
-      </div>
-      <div class="feature-card">
-        <h3><i class="fas fa-user-md"></i> Healthcare Professionals</h3>
-        <ul>
-          <li>Dedicated teams for immunology, transplant, and specialty care.</li>
-          <li>Organized advisory boards, seminars, and medical forums.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <p>Contact us at <a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
-      <p>&copy; 2025 Sonexa Pharma. All rights reserved.</p>
-    </div>
+    <p>© 2025 Sonexa Pharma — Transforming Access, Empowering Care.</p>
+    <p><a href="mailto:info@sonexapharma.com">info@sonexapharma.com</a></p>
   </footer>
 
   <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
     });
 
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
+          entry.target.classList.add('show');
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.2 });
 
-    // Observe all cards
-    document.querySelectorAll('.mission-card, .feature-card, .card').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
